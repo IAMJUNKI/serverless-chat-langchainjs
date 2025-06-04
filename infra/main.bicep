@@ -17,7 +17,7 @@ param storageAccountName string = ''
 param cosmosDbServiceName string = ''
 
 @description('Location for the OpenAI resource group')
-@allowed(['australiaeast', 'canadaeast', 'eastus', 'eastus2', 'francecentral', 'japaneast', 'northcentralus', 'swedencentral', 'switzerlandnorth', 'uksouth', 'westeurope'])
+@allowed(['australiaeast', 'canadaeast', 'eastus', 'eastus2', 'francecentral', 'japaneast', 'northcentralus', 'swedencentral', 'switzerlandnorth', 'uksouth', 'westeurope','spaincentral'])
 @metadata({
   azd: {
     type: 'location'
@@ -97,7 +97,7 @@ module api './app/api.bicep' = {
   scope: resourceGroup
   params: {
     name: apiResourceName
-    location: location
+    location: webappLocation
     tags: union(tags, { 'azd-service-name': apiServiceName })
     appServicePlanId: appServicePlan.outputs.id
     allowedOrigins: [webapp.outputs.uri]
@@ -245,7 +245,7 @@ module cosmosDb 'br/public:avm/res/document-db/database-account:0.9.0' = {
     tags: tags
     locations: [
       {
-        locationName: location
+        locationName: 'spaincentral'
         failoverPriority: 0
         isZoneRedundant: false
       }

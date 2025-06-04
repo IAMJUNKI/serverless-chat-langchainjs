@@ -30,12 +30,12 @@ export type HistoryComponentOptions = {
 export const historyDefaultOptions: HistoryComponentOptions = {
   apiUrl: '',
   strings: {
-    openSidebar: 'Open sidebar',
-    closeSidebar: 'Close sidebar',
+    openSidebar: 'Abrir barra lateral',
+    closeSidebar: 'Cerrar barra lateral',
     chats: 'Chats',
-    deleteChatButton: 'Delete chat',
-    errorMessage: 'Cannot load chat history',
-    noChatHistory: 'No chat history',
+    deleteChatButton: 'Borrar chat',
+    errorMessage: 'No se pudo cargar el historial de chats',
+    noChatHistory: 'No hay historial de chats',
   },
 };
 
