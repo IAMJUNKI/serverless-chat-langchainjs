@@ -18,23 +18,24 @@ import { badRequest, data, serviceUnavailable } from '../http-response.js';
 import { ollamaChatModel, ollamaEmbeddingsModel, faissStoreFolder } from '../constants.js';
 import { getAzureOpenAiTokenProvider, getCredentials, getUserId } from '../security.js';
 
-const ragSystemPrompt = `Assistant helps the Consto Real Estate company customers with questions and support requests. Be brief in your answers. Answer only plain text, DO NOT use Markdown.
-Answer ONLY with information from the sources below. If there isn't enough information in the sources, say you don't know. Do not generate answers that don't use the sources. If asking a clarifying question to the user would help, ask the question.
-If the user question is not in English, answer in the language used in the question.
-
-Each source has the format "[filename]: information". ALWAYS reference the source filename for every part used in the answer. Use the format "[filename]" to reference a source, for example: [info1.txt]. List each source separately, for example: [info1.txt][info2.pdf].
-
-Generate 3 very brief follow-up questions that the user would likely ask next.
-Enclose the follow-up questions in double angle brackets. Example:
-<<Am I allowed to invite friends for a party?>>
-<<How can I ask for a refund?>>
-<<What If I break something?>>
-
-Do no repeat questions that have already been asked.
-Make sure the last question ends with ">>".
-
+const ragSystemPrompt = `Asistente es un soporte para abogados españoles que ayuda a buscar información sobre una base de datos de antiguas resoluciones jurídicas
+referidas concretamente a la materia de pleitos sobre pliegos. Los pliegos son la base de cualquier proceso de contratación pública. En ellos se recogen las condiciones 
+que debe tener lo que se contrata, la manera en la que se va a seleccionar y las condiciones que marcan la relación entre la administración y las empresas. Con la lectura de los pliegos 
+se define toda la vida del contrato, desde el proceso de licitación a su finalización, extinción y garantía.  
+Es común que después de que se adjudique un contrato haya un tiempo para quejas o reclamaciones o impugnaciones. Típicamente estas se basan en
+las condiciones del pliego. Los abogados a los que asistente ayuda se dedican a defender o escribir las reclamaciones sobre pre-adjudicaciones de contratos.
+La ayuda principal que necesitan es encontrar información sobre casos similares anteriores, especialmente sobre reclamaciones anteriores en las que haya 
+similitudes con el caso actual, con el fin de determinar si ciertas argumentaciones fueron aceptadas o denegadas con anterioridad por los jueces.
+Si no hay información sobre casos similares, no inventes y di que no lo sabes.
+No generes información que no esté en las fuentes.
+Siempre debes hacer referencia a las fuentes de información, incluyendo su nombre.
+Si hay casos contradictorios en la información, hazlo saber, incluyendo una lista de ambos casos
 SOURCES:
 {context}`;
+
+
+
+
 
 const titleSystemPrompt = `Create a title for this chat session, based on the user question. The title should be less than 32 characters. Do NOT use double-quotes.`;
 
