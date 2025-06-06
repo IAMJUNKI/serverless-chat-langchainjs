@@ -47,7 +47,7 @@ export const chatDefaultOptions: ChatComponentOptions = {
   strings: {
     promptSuggestionsTitle: 'Pregunta algo o elige una sugerencia:',
     citationsTitle: 'Citas:',
-    followUpQuestionsTitle: 'Follow-up questions:',
+    followUpQuestionsTitle: 'Otras preguntas:',
     chatInputPlaceholder: 'Preguntame algo...',
     chatInputButtonLabel: 'Enviar pregunta',
     assistant: 'Asistente',

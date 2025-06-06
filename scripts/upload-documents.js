@@ -42,10 +42,13 @@ async function uploadDocuments(apiUrl, dataFolder) {
   }
 }
 
+const UPLOAD_DOCUMENTS = process.env.UPLOAD_DOCUMENTS || 'false';
 const apiUrl = process.argv[2];
-if (apiUrl) {
+if (apiUrl && UPLOAD_DOCUMENTS === 'true') {
+  console.log(`UPLOAD_DOCUMENTS is set to ${UPLOAD_DOCUMENTS}`);
   await uploadDocuments(apiUrl, 'data');
 } else {
+  console.log(`UPLOAD_DOCUMENTS is set to ${UPLOAD_DOCUMENTS}`);
   console.log('Usage: node upload-documents.js <api_url>');
   process.exitCode = -1;
 }
